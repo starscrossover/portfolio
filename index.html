@@ -3,70 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Starscrossover</title>
+    <title>Starscrossover</title>
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
-    <!-- MAIN BRAND HEADER -->
-    <header class="site-header">
-        <h1>Starscrossover</h1>
+    <!-- CLEAN RAW TOP NAVIGATION BAR -->
+    <header>
+        <h1>STARSCROSSOVER</h1>
+        <nav>
+            <a href="#projects">Projects</a>
+            <a href="#gallery">The Gallery</a>
+            <a href="#stills">Stills & Frames</a>
+        </nav>
     </header>
 
-    <!-- HERO IMAGE BLOCK (Inspired by Buro Reng) -->
-    <section class="hero-image-container">
-        <!-- You can replace this link later with any image or video still you want! -->
-        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1600&auto=format&fit=crop" alt="Featured Work Video Frame">
-    </section>
+    <!-- FLAT RAW CONTENT AREA -->
+    <main>
 
-    <!-- BIG BOLD TITLE & REFINED TAGLINE -->
-    <section class="portfolio-title-block">
-        <h2 class="massive-title">PORTFOLIO</h2>
-        <p class="refined-subtitle">A curated compilation of creative architecture and visual experiments</p>
-    </section>
-
-    <!-- ABOUT ME / INFO SECTION -->
-    <section class="intro-section">
-        <div class="intro-grid">
-            <div class="intro-title">
-                <h2>The Mind<br>Behind It</h2>
-            </div>
-            <div class="intro-text">
-                <p class="bio-lead">I am a creator and marketing strategist balancing structural business logic with unfiltered artistic execution.</p>
-                <div class="bio-details">
-                    <p><strong>Based in:</strong> Morocco</p>
-                    <p><strong>Profile:</strong> Brand Strategy, Visual Curation, & Cinematic Imagery</p>
+        <!-- PROJECTS -->
+        <section id="projects">
+            <h2>// Projects</h2>
+            
+            <div class="raw-item">
+                <div class="raw-media">
+                    <img src="https://picsum.photos/800/600" alt="SÈVE">
+                </div>
+                <div class="raw-info">
+                    <h3>SÈVE: L'Essence de la Pureté Botanique</h3>
+                    <p>Brand strategy and visual framework for a botanical cleansing gel. Focuses on clean beauty positioning, SWOT analysis, and consumer mapping.</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- HORIZONTAL FUNKY GATEWAY DECK -->
-    <main class="deck-section">
-        <div class="deck-container">
-            
-            <a href="./projects/" class="deck-card">
-                <span class="deck-number">01</span>
-                <h3>Projects</h3>
-                <p>Brand identity frameworks, strategic marketing setups, and presentation work.</p>
-                <span class="deck-arrow">→</span>
-            </a>
+        <!-- THE GALLERY -->
+        <section id="gallery">
+            <h2>// The Gallery</h2>
+            <div class="raw-grid">
+                <div class="grid-image"><img src="https://i.imgur.com/qf37Ljo.jpeg" alt="Photo 1"></div>
+                <div class="grid-image"><img src="https://picsum.photos/800/600?random=2" alt="Photo 2"></div>
+                <div class="grid-image"><img src="https://picsum.photos/700/900?random=4" alt="Photo 3"></div>
+            </div>
+        </section>
 
-            <a href="./gallery/" class="deck-card">
-                <span class="deck-number">02</span>
-                <h3>The Gallery</h3>
-                <p>Curated collections of premium editorial photography and high-end design layouts.</p>
-                <span class="deck-arrow">→</span>
-            </a>
+        <!-- STILLS & FRAMES -->
+        <section id="stills">
+            <h2>// Stills & Frames</h2>
+            <div class="raw-grid">
+                <div class="grid-image"><img src="https://picsum.photos/600/600?random=3" alt="Craft 1"></div>
+                <div class="grid-image"><img src="https://picsum.photos/800/700?random=5" alt="Craft 2"></div>
+            </div>
+        </section>
 
-            <a href="./stills/" class="deck-card">
-                <span class="deck-number">03</span>
-                <h3>Stills & Frames</h3>
-                <p>Raw photography captures, candid perspectives, and experimental footage captures.</p>
-                <span class="deck-arrow">→</span>
-            </a>
-
-        </div>
     </main>
 
 </body>

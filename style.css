@@ -1,5 +1,5 @@
 /* ==========================================
-   GLOBAL STYLES & RESET
+   BRUTALIST URBAN RESET
    ========================================== */
 html {
     scroll-behavior: smooth;
@@ -13,196 +13,125 @@ body {
     color: #000;
 }
 
-/* Minimal Header */
-.site-header {
-    padding: 30px 40px;
+/* Header & Nav back on a clean single line */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    border-bottom: 2px solid #000; /* Sharp, thick black line */
     background: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-.site-header h1 {
-    font-size: 1.2rem;
+header h1 {
+    font-size: 1.1rem;
     font-weight: bold;
-    text-transform: uppercase;
     letter-spacing: 2px;
     margin: 0;
 }
 
-/* ==========================================
-   HERO IMAGE BLOCK (Buro Reng Vibe)
-   ========================================== */
-.hero-image-container {
-    width: 100%;
-    max-height: 85vh;
-    overflow: hidden;
-    background: #000;
-    display: flex;
-    align-items: center;
-}
-
-.hero-image-container img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    display: block;
-    /* Optional: uncomment the line below if you want the image to be black and white too */
-    /* filter: grayscale(100%); */
-}
-
-/* ==========================================
-   MASSIVE TYPOGRAPHY BLOCK
-   ========================================== */
-.portfolio-title-block {
-    padding: 80px 40px;
-    background: #fff;
-}
-
-.massive-title {
-    font-size: clamp(4rem, 12vw, 9rem);
-    font-weight: 900;
-    letter-spacing: -4px;
-    margin: 0;
-    line-height: 0.85;
-    text-transform: uppercase;
-}
-
-.refined-subtitle {
-    font-size: clamp(1rem, 2.5vw, 1.4rem);
-    color: #333;
-    margin-top: 30px;
-    max-width: 700px;
-    line-height: 1.4;
-    font-weight: 500;
-}
-
-/* ==========================================
-   ABOUT / INTRO SECTION
-   ========================================== */
-.intro-section {
-    background: #fff;
-    padding: 100px 40px;
-    border-top: 1px solid #000;
-    border-bottom: 1px solid #000;
-}
-
-.intro-grid {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 60px;
-}
-
-.intro-title h2 {
-    font-size: 3rem;
-    line-height: 1;
-    letter-spacing: -1px;
-    text-transform: uppercase;
-    margin: 0;
-}
-
-.bio-lead {
-    font-size: 1.6rem;
-    line-height: 1.4;
+nav a {
     color: #000;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Content Container */
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+section {
+    padding: 60px 0;
+    border-bottom: 1px dashed #000; /* Industrial dashed breaklines */
+}
+
+section:last-child {
+    border-bottom: none;
+}
+
+section h2 {
+    font-family: monospace; /* Gives it an unedited code look */
+    font-size: 1.2rem;
+    letter-spacing: 1px;
     margin-top: 0;
     margin-bottom: 40px;
 }
 
-.bio-details p {
-    font-size: 1rem;
-    margin: 10px 0;
-    color: #555;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-/* ==========================================
-   HORIZONTAL ENTRY DECK
-   ========================================== */
-.deck-section {
-    background: #000;
-    padding: 0;
-}
-
-.deck-container {
+/* Raw Project Layout (Image + Text block) */
+.raw-item {
     display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.raw-media {
+    flex: 1.2;
+}
+
+.raw-media img {
     width: 100%;
-    min-height: 450px;
+    height: auto;
+    display: block;
+    border: 1px solid #000; /* Stark frame around image */
 }
 
-.deck-card {
+.raw-info {
     flex: 1;
-    padding: 60px 40px;
-    color: #fff;
-    text-decoration: none;
-    border-right: 1px solid #222;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-    background: #000;
 }
 
-.deck-card:last-child {
-    border-right: none;
+.raw-info h3 {
+    font-size: 1.3rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: bold;
 }
 
-.deck-number {
-    font-size: 0.9rem;
-    font-family: monospace;
-    color: #666;
-}
-
-.deck-card h3 {
-    font-size: 2.2rem;
-    text-transform: uppercase;
-    letter-spacing: -1px;
-    margin: 20px 0 10px 0;
-    transition: transform 0.3s ease;
-}
-
-.deck-card p {
+.raw-info p {
     font-size: 0.95rem;
-    line-height: 1.5;
-    color: #aaa;
-    margin-bottom: auto;
+    line-height: 1.6;
+    color: #333;
 }
 
-.deck-arrow {
-    font-size: 2rem;
-    color: #444;
-    transition: all 0.3s ease;
-    align-self: flex-end;
+/* Clean, Raw Photo Grids */
+.raw-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
 }
 
-/* Hovers */
-.deck-card:hover {
-    background: #111;
+.grid-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid #000;
 }
 
-.deck-card:hover h3 {
-    transform: translateX(5px);
-}
-
-.deck-card:hover .deck-arrow {
-    color: #fff;
-    transform: translateX(8px);
-}
-
-/* ==========================================
-   RESPONSIVE OVERRIDES
-   ========================================== */
-@media (max-width: 900px) {
-    .intro-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-    .deck-container {
+/* Quick responsive tweak for smaller viewports */
+@media (max-width: 768px) {
+    header {
         flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
     }
-    .deck-card {
-        border-right: none;
-        border-bottom: 1px solid #222;
-        min-height: 250px;
+    nav a {
+        margin-left: 0;
+        margin-right: 15px;
+    }
+    .raw-item {
+        flex-direction: column;
+        gap: 20px;
     }
 }

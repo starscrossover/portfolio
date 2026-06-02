@@ -133,3 +133,189 @@ section h2 {
         gap: 20px;
     }
 }
+/* ==========================================
+   NEW EDITORIAL ACCUEIL STYLES 
+   ========================================== */
+
+/* Full Screen Hero with Black & White Background Image */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* You can swap the image URL below whenever you want to use your own background photo */
+    background-image: url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1600&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: grayscale(100%); /* Keeps it moody black and white */
+    padding: 0;
+    margin: 0;
+}
+
+/* Subtle dark overlay so text pops sharply */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.15); /* Sleek light mist over the photo */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content h1 {
+    font-size: clamp(4rem, 10vw, 8rem); /* Massively scales up cleanly without breaking */
+    font-weight: 900;
+    color: #000;
+    letter-spacing: -4px;
+    margin: 0;
+    line-height: 0.9;
+    text-transform: uppercase;
+}
+
+.hero-subtitle {
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+    color: #111;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-top: 20px;
+    font-weight: 500;
+}
+
+/* Elegant Intro Block */
+.intro-section {
+    background: #fff;
+    padding: 100px 40px;
+    border-bottom: 1px solid #111;
+}
+
+.intro-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
+}
+
+.intro-title h2 {
+    font-size: 3rem;
+    line-height: 1;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.bio-lead {
+    font-size: 1.6rem;
+    line-height: 1.4;
+    color: #000;
+    margin-top: 0;
+    margin-bottom: 40px;
+}
+
+.bio-details p {
+    font-size: 1rem;
+    margin: 10px 0;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Horizontal Funky Gateway Deck */
+.deck-section {
+    background: #000; /* Contrast shift to stark black */
+    padding: 0;
+}
+
+.deck-container {
+    display: flex;
+    width: 100%;
+    min-height: 450px;
+}
+
+.deck-card {
+    flex: 1;
+    padding: 60px 40px;
+    color: #fff;
+    text-decoration: none;
+    border-right: 1px solid #222;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    position: relative;
+    background: #000;
+}
+
+.deck-card:last-child {
+    border-right: none;
+}
+
+.deck-number {
+    font-size: 0.9rem;
+    font-family: monospace;
+    color: #666;
+    display: block;
+}
+
+.deck-card h3 {
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    margin: 20px 0 10px 0;
+    transition: transform 0.3s ease;
+}
+
+.deck-card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #aaa;
+    margin-bottom: auto;
+}
+
+.deck-arrow {
+    font-size: 2rem;
+    color: #444;
+    transition: all 0.3s ease;
+    align-self: flex-end;
+}
+
+/* Modern Hover States */
+.deck-card:hover {
+    background: #111;
+}
+
+.deck-card:hover h3 {
+    color: #fff;
+    transform: translateX(5px);
+}
+
+.deck-card:hover .deck-arrow {
+    color: #fff;
+    transform: translateX(8px);
+}
+
+/* Responsive Overrides for Mobile Screens */
+@media (max-width: 900px) {
+    .intro-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    .deck-container {
+        flex-direction: column;
+    }
+    .deck-card {
+        border-right: none;
+        border-bottom: 1px solid #222;
+        min-height: 250px;
+    }
+}

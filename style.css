@@ -1,50 +1,57 @@
 /* ==========================================================================
-   SQS STACKED PORTFOLIO REPLICATION (RAW URBAN MINIMALISM)
+   RAW MINIMALIST LAYOUT FRAMEWORK
    ========================================================================== */
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
     background-color: #fff;
     color: #000;
+    overflow-x: hidden;
 }
 
-#canvas {
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-    box-sizing: border-box;
+/* TOP DIVISION HEADLINE (Directly inspired by image_3ce380.jpg) */
+#topHeader {
+    width: 100%;
+    padding: 25px 40px;
+    border-bottom: 1px solid #000; /* Sharp clean raw border division line */
+    background: #fff;
+}
+
+.header-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
 }
 
 /* ==========================================================================
-   LEFT SIDEBAR PANEL (Matching image_3cfa68.png + Daniel Arnold)
+   MAIN FLEXBOX LAYOUT (Directly inspired by image_3ce078.jpg)
    ========================================================================== */
-#headerWrapper {
-    width: 240px;
-    padding: 60px 0 0 50px;
+#siteCanvas {
     display: flex;
-    flex-direction: column;
-    gap: 40px;
+    width: 100vw;
+    min-height: calc(100vh - 75px);
+}
+
+/* Left Sidebar Menu Column */
+#sideNav {
+    width: 250px;
+    padding: 60px 0 0 40px;
     flex-shrink: 0;
 }
 
-/* Stacked massive bold letters exactly like image_3cfa68.png */
-.logo-text {
-    font-size: 1.8rem;
-    font-weight: 900;
-    line-height: 1.05;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    margin: 0;
-}
-
-#mainNavigation {
+.category-links {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
 }
 
-#mainNavigation a {
+.category-links a {
     color: #000;
     text-decoration: none;
     font-size: 1rem;
@@ -52,68 +59,39 @@ body {
     transition: color 0.15s ease;
 }
 
-#mainNavigation a:hover {
+.category-links a:hover {
     text-decoration: underline;
 }
 
-/* Active item highlighting red like the real deal */
-#mainNavigation a.active-link {
+/* Active navigation item highlighting */
+.category-links a.active-item {
     color: #ff0000;
 }
 
 /* ==========================================================================
-   CENTERED VIEWPORT SLIDESHOW BLOCK
+   EXPANSIVE WORKSPACE DISPLAY VIEWER
    ========================================================================== */
-#pageWrapper {
+#viewerWorkspace {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 40px;
+    justify-content: flex-start;
+    padding: 60px 80px 40px 20px; /* Provides organic breathing space on the right */
 }
 
-#galleryWrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/* Fixes the tiny preview glitch in your layout */
+.image-display-frame {
     width: 100%;
-    max-width: 850px;
-}
-
-#slideshowwrapper {
-    width: 100%;
-    height: 70vh;
+    max-width: 900px; /* Allows your images to stretch out and be seen clearly */
+    height: 68vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
+    background: #fff;
 }
 
-.sqs-gallery-design-stacked {
-    width: 100%;
-    height: 100%;
-    position: relative;
-}
-
-/* Hidden state for non-active images */
-.slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: none;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Display active item instantly with zero fancy transitions */
-.slide.active {
-    display: flex;
-}
-
-.slide img {
+.image-display-frame img {
     max-width: 100%;
     max-height: 100%;
     width: auto;
@@ -122,54 +100,51 @@ body {
     display: block;
 }
 
-/* ==========================================================================
-   MINIMAL NAVIGATION CONTROLS ROW
-   ========================================================================== */
-.gallery-controls {
+/* Interface Interaction Row sitting neatly beneath photo container */
+.viewer-interface {
     display: flex;
     align-items: center;
     gap: 15px;
-    margin-top: 20px;
+    margin-top: 25px;
     width: 100%;
-    justify-content: flex-start; /* Keeps controls locked neat to left side under image */
+    max-width: 900px;
+    justify-content: flex-start; /* Locks navigation to bottom-left corner of the image */
 }
 
-.control {
+.arrow-trigger {
     font-size: 1rem;
     cursor: pointer;
     color: #000;
     user-select: none;
-    padding: 2px 8px;
+    padding: 4px 6px;
+    transition: color 0.1s ease;
 }
 
-.control:hover {
+.arrow-trigger:hover {
     color: #ff0000;
 }
 
-.counter-display {
+.image-index-counter {
     font-size: 0.9rem;
     color: #000;
+    font-weight: normal;
 }
 
 /* ==========================================================================
-   RESPONSIVE OVERRIDES FOR PORTABLE DEVICES
+   MOBILE SCALING FALLBACK
    ========================================================================== */
 @media (max-width: 768px) {
-    #canvas {
+    #siteCanvas {
         flex-direction: column;
-        height: auto;
-        overflow-y: auto;
     }
-    #headerWrapper {
+    #sideNav {
         width: 100%;
         padding: 30px;
-        box-sizing: border-box;
-        gap: 20px;
     }
-    #pageWrapper {
+    #viewerWorkspace {
         padding: 20px;
     }
-    #slideshowwrapper {
-        height: 50vh;
+    .image-display-frame {
+        height: 45vh;
     }
 }

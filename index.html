@@ -6,104 +6,97 @@
     <title>STARSCROSSOVER</title>
     <link rel="stylesheet" href="./style.css">
 </head>
-<body class="header-position-left gallery-layout-default">
+<body>
 
-    <div id="canvasWrapper">
-        <div id="canvas">
-            
-            <!-- FIXED LEFT SIDEBAR (Stacked text layout) -->
-            <header id="headerWrapper">
-                <div id="logoWrapper">
-                    <h1 class="logo-text">STAR<br>CROSS<br>OVER</h1>
-                </div>
-                <nav id="mainNavigation">
-                    <a href="#" class="active-link" onclick="switchTab('gallery')">The Gallery</a>
-                    <a href="#" onclick="switchTab('stills')">Stills & Frames</a>
-                    <a href="#" onclick="switchTab('projects')">Projects</a>
-                </nav>
-            </header>
-
-            <!-- MAIN CONTAINER MATCHING SQS STRUCTURAL DNA -->
-            <main id="pageWrapper" role="main">
-                <section id="page">
-                    <div id="mainContent">
-                        <div id="galleryWrapper">
-                            <div id="slideshowwrapper">
-                                <div id="slideshow" class="sqs-gallery-design-stacked">
-                                    
-                                    <!-- All active frames loaded and waiting -->
-                                    <div class="slide loaded active" data-cat="gallery"><img src="https://i.imgur.com/qf37Ljo.jpeg" alt="G1"></div>
-                                    <div class="slide loaded" data-cat="gallery"><img src="https://picsum.photos/800/600?random=1" alt="G2"></div>
-                                    <div class="slide loaded" data-cat="gallery"><img src="https://picsum.photos/700/900?random=2" alt="G3"></div>
-                                    
-                                    <div class="slide loaded" data-cat="stills"><img src="https://picsum.photos/600/600?random=3" alt="S1"></div>
-                                    <div class="slide loaded" data-cat="stills"><img src="https://picsum.photos/800/700?random=4" alt="S2"></div>
-                                    
-                                    <div class="slide loaded" data-cat="projects"><img src="https://picsum.photos/800/600?random=5" alt="P1"></div>
-
-                                </div>
-                            </div>
-
-                            <!-- NATIVE CONTROLS (Click anywhere or use arrows to flip) -->
-                            <div class="gallery-controls">
-                                <div class="control prev-slide" onclick="changeSlide(-1)">◀</div>
-                                <div id="imageData" class="counter-display">1 of 3</div>
-                                <div class="control next-slide" onclick="changeSlide(1)">▶</div>
-                            </div>
-
-                        </div>
-                    </div>
-                </section>
-            </main>
-
-        </div>
+    <!-- TOP BRAND BAR (Inspired by image_3ce380.jpg) -->
+    <div id="topHeader">
+        <div class="header-title">STARSCROSSOVER</div>
     </div>
 
-    <!-- CLEAN SWITCHER RUNTIME -->
+    <!-- MAIN COMPOSITION CONTAINER (Inspired by image_3ce078.jpg) -->
+    <div id="siteCanvas">
+        
+        <!-- SIDE NAVIGATION PANEL -->
+        <aside id="sideNav">
+            <nav class="category-links">
+                <a href="#" class="active-item" onclick="switchCategory('gallery')">The Gallery</a>
+                <a href="#" onclick="switchCategory('stills')">Stills & Frames</a>
+                <a href="#" onclick="switchCategory('projects')">Projects</a>
+            </nav>
+        </aside>
+
+        <!-- LARGE DANIEL ARNOLD STYLE VIEWER AREA -->
+        <main id="viewerWorkspace">
+            <div class="image-display-frame">
+                <img id="active-photo" src="" alt="Portfolio Display">
+            </div>
+
+            <!-- ARROW SELECTORS BELOW IMAGE -->
+            <div class="viewer-interface">
+                <div class="arrow-trigger" onclick="shiftImage(-1)">◀</div>
+                <div id="imageIndicator" class="image-index-counter">1 of 3</div>
+                <div class="arrow-trigger" onclick="shiftImage(1)">▶</div>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- LIGHTWEIGHT IMAGE RUNTIME -->
     <script>
-        let currentCat = 'gallery';
-        let currentIndex = 0;
+        // Update these exact URLs with your real hosted content links later!
+        const collectionData = {
+            gallery: [
+                "https://i.imgur.com/qf37Ljo.jpeg",
+                "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=1200&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop"
+            ],
+            stills: [
+                "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1200&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1200&auto=format&fit=crop"
+            ],
+            projects: [
+                "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=1200&auto=format&fit=crop"
+            ]
+        };
 
-        function getActiveSlides() {
-            return Array.from(document.querySelectorAll(`.slide[data-cat="${currentCat}"]`));
-        }
+        let activeCat = 'gallery';
+        let activeIdx = 0;
 
-        function render() {
-            const allSlides = document.querySelectorAll('.slide');
-            allSlides.forEach(s => s.classList.remove('active'));
-            
-            const activeSlides = getActiveSlides();
-            if (activeSlides.length > 0) {
-                if (currentIndex >= activeSlides.length) currentIndex = 0;
-                if (currentIndex < 0) currentIndex = activeSlides.length - 1;
-                
-                activeSlides[currentIndex].classList.add('active');
-                document.getElementById('imageData').textContent = `${currentIndex + 1} of ${activeSlides.length}`;
+        function refreshViewer() {
+            const list = collectionData[activeCat];
+            const imgNode = document.getElementById('active-photo');
+            const counterNode = document.getElementById('imageIndicator');
+
+            if (list && list.length > 0) {
+                imgNode.src = list[activeIdx];
+                counterNode.textContent = `${activeIdx + 1} of ${list.length}`;
             }
         }
 
-        function switchTab(cat) {
-            currentCat = cat;
-            currentIndex = 0;
-            
-            document.querySelectorAll('#mainNavigation a').forEach(link => {
-                link.classList.remove('active-link');
-                if(link.textContent.toLowerCase().includes(cat === 'stills' ? 'stills' : cat)) {
-                    link.classList.add('active-link');
-                }
-            });
+        function switchCategory(catName) {
+            activeCat = catName;
+            activeIdx = 0;
 
-            render();
+            document.querySelectorAll('.category-links a').forEach(el => {
+                el.classList.remove('active-item');
+            });
+            
+            event.target.classList.add('active-item');
+            refreshViewer();
             event.preventDefault();
         }
 
-        function changeSlide(direction) {
-            currentIndex += direction;
-            render();
+        function shiftImage(step) {
+            const list = collectionData[activeCat];
+            activeIdx += step;
+
+            if (activeIdx >= list.length) activeIdx = 0;
+            if (activeIdx < 0) activeIdx = list.length - 1;
+
+            refreshViewer();
         }
 
-        // Initialize view
-        window.onload = () => { render(); };
+        window.onload = () => { refreshViewer(); };
     </script>
 </body>
 </html>

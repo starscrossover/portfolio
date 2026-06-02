@@ -4,19 +4,161 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STARSCROSSOVER</title>
-    <link rel="stylesheet" href="./style.css">
+    
+    <!-- RAW EMBEDDED CSS TO FORCE INSTANT CACHE REFRESH -->
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            color: #000;
+            overflow-x: hidden;
+        }
+
+        /* TOP BLACK LINE & BRAND TITLE (Matches image_3ce380.jpg) */
+        #topHeader {
+            width: 100%;
+            padding: 20px 40px;
+            border-bottom: 1px solid #000; /* Crisp minimalist border line */
+            background: #fff;
+        }
+
+        .header-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        /* MAIN TWO-COLUMN CANVAS (Matches Daniel Arnold composition) */
+        #siteCanvas {
+            display: flex;
+            width: 100vw;
+            min-height: calc(100vh - 65px);
+        }
+
+        /* Left Side Panel Navigation */
+        #sideNav {
+            width: 240px;
+            padding: 50px 0 0 40px;
+            flex-shrink: 0;
+        }
+
+        .category-links {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .category-links a {
+            color: #000;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: none; /* Keeps it raw and clean */
+            transition: color 0.15s ease;
+        }
+
+        .category-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Active section turns red like real SQS templates */
+        .category-links a.active-item {
+            color: #ff0000;
+        }
+
+        /* EXPANSIVE VISUAL DISPLAY CONTAINER */
+        #viewerWorkspace {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 50px 60px 40px 20px;
+        }
+
+        /* Fixes the tiny shrunken image box error from image_3cd938.png */
+        .image-display-frame {
+            width: 100%;
+            max-width: 900px; 
+            height: 65vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+        }
+
+        .image-display-frame img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* CONTROLS BAR POSITIONED DIRECTLY UNDER IMAGE */
+        .viewer-interface {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 25px;
+            width: 100%;
+            max-width: 900px;
+            justify-content: flex-start; /* Aligns buttons cleanly under image left side */
+        }
+
+        .arrow-trigger {
+            font-size: 1.1rem;
+            cursor: pointer;
+            color: #000;
+            user-select: none;
+            padding: 4px 8px;
+        }
+
+        .arrow-trigger:hover {
+            color: #ff0000;
+        }
+
+        .image-index-counter {
+            font-size: 0.9rem;
+            color: #000;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            #siteCanvas {
+                flex-direction: column;
+            }
+            #sideNav {
+                width: 100%;
+                padding: 30px;
+            }
+            #viewerWorkspace {
+                padding: 20px;
+            }
+            .image-display-frame {
+                height: 45vh;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- TOP BRAND BAR (Inspired by image_3ce380.jpg) -->
+    <!-- Top Header Component -->
     <div id="topHeader">
         <div class="header-title">STARSCROSSOVER</div>
     </div>
 
-    <!-- MAIN COMPOSITION CONTAINER (Inspired by image_3ce078.jpg) -->
+    <!-- Main Workspace -->
     <div id="siteCanvas">
         
-        <!-- SIDE NAVIGATION PANEL -->
         <aside id="sideNav">
             <nav class="category-links">
                 <a href="#" class="active-item" onclick="switchCategory('gallery')">The Gallery</a>
@@ -25,13 +167,11 @@
             </nav>
         </aside>
 
-        <!-- LARGE DANIEL ARNOLD STYLE VIEWER AREA -->
         <main id="viewerWorkspace">
             <div class="image-display-frame">
-                <img id="active-photo" src="" alt="Portfolio Display">
+                <img id="active-photo" src="" alt="Portfolio Asset">
             </div>
 
-            <!-- ARROW SELECTORS BELOW IMAGE -->
             <div class="viewer-interface">
                 <div class="arrow-trigger" onclick="shiftImage(-1)">◀</div>
                 <div id="imageIndicator" class="image-index-counter">1 of 3</div>
@@ -41,9 +181,9 @@
 
     </div>
 
-    <!-- LIGHTWEIGHT IMAGE RUNTIME -->
+    <!-- CLEAN SWITCHER RUNTIME -->
     <script>
-        // Update these exact URLs with your real hosted content links later!
+        // Replace these URLs anytime with your own content links!
         const collectionData = {
             gallery: [
                 "https://i.imgur.com/qf37Ljo.jpeg",

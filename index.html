@@ -6,117 +6,104 @@
     <title>STARSCROSSOVER</title>
     <link rel="stylesheet" href="./style.css">
 </head>
-<body>
+<body class="header-position-left gallery-layout-default">
 
-    <div class="portfolio-container">
-        
-        <!-- FIXED LEFT SIDE PANEL (Inspired by image_3cfa68.png & image_3cf6fd.jpg) -->
-        <aside class="side-panel">
-            <div class="logo-area">
-                <h1>STARSCROSSOVER</h1>
-            </div>
-            <nav class="nav-links">
-                <a href="#" class="active" onclick="switchCategory('gallery')">The Gallery</a>
-                <a href="#" onclick="switchCategory('stills')">Stills & Frames</a>
-                <a href="#" onclick="switchCategory('projects')">Projects</a>
-            </nav>
-        </aside>
-
-        <!-- MAIN VIEWER AREA -->
-        <main class="viewer-area">
-            <div class="image-wrapper">
-                <img id="display-image" src="" alt="Portfolio Work">
-            </div>
-
-            <!-- ARROW CONTROLS & COUNTER -->
-            <div class="controls-container">
-                <div class="arrow-buttons">
-                    <button onclick="prevImage()">◀</button>
-                    <button onclick="nextImage()">▶</button>
+    <div id="canvasWrapper">
+        <div id="canvas">
+            
+            <!-- FIXED LEFT SIDEBAR (Stacked text layout) -->
+            <header id="headerWrapper">
+                <div id="logoWrapper">
+                    <h1 class="logo-text">STAR<br>CROSS<br>OVER</h1>
                 </div>
-                <div id="image-counter" class="counter">0 of 0</div>
-            </div>
-        </main>
+                <nav id="mainNavigation">
+                    <a href="#" class="active-link" onclick="switchTab('gallery')">The Gallery</a>
+                    <a href="#" onclick="switchTab('stills')">Stills & Frames</a>
+                    <a href="#" onclick="switchTab('projects')">Projects</a>
+                </nav>
+            </header>
 
+            <!-- MAIN CONTAINER MATCHING SQS STRUCTURAL DNA -->
+            <main id="pageWrapper" role="main">
+                <section id="page">
+                    <div id="mainContent">
+                        <div id="galleryWrapper">
+                            <div id="slideshowwrapper">
+                                <div id="slideshow" class="sqs-gallery-design-stacked">
+                                    
+                                    <!-- All active frames loaded and waiting -->
+                                    <div class="slide loaded active" data-cat="gallery"><img src="https://i.imgur.com/qf37Ljo.jpeg" alt="G1"></div>
+                                    <div class="slide loaded" data-cat="gallery"><img src="https://picsum.photos/800/600?random=1" alt="G2"></div>
+                                    <div class="slide loaded" data-cat="gallery"><img src="https://picsum.photos/700/900?random=2" alt="G3"></div>
+                                    
+                                    <div class="slide loaded" data-cat="stills"><img src="https://picsum.photos/600/600?random=3" alt="S1"></div>
+                                    <div class="slide loaded" data-cat="stills"><img src="https://picsum.photos/800/700?random=4" alt="S2"></div>
+                                    
+                                    <div class="slide loaded" data-cat="projects"><img src="https://picsum.photos/800/600?random=5" alt="P1"></div>
+
+                                </div>
+                            </div>
+
+                            <!-- NATIVE CONTROLS (Click anywhere or use arrows to flip) -->
+                            <div class="gallery-controls">
+                                <div class="control prev-slide" onclick="changeSlide(-1)">◀</div>
+                                <div id="imageData" class="counter-display">1 of 3</div>
+                                <div class="control next-slide" onclick="changeSlide(1)">▶</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+        </div>
     </div>
 
-    <!-- RAW SLIDER SCRIPT -->
+    <!-- CLEAN SWITCHER RUNTIME -->
     <script>
-        // Paste your own hosted image URLs here to display your real work!
-        const portfolioData = {
-            gallery: [
-                "https://i.imgur.com/qf37Ljo.jpeg",
-                "https://picsum.photos/800/600?random=11",
-                "https://picsum.photos/700/900?random=12"
-            ],
-            stills: [
-                "https://picsum.photos/600/600?random=21",
-                "https://picsum.photos/800/700?random=22"
-            ],
-            projects: [
-                "https://picsum.photos/800/600?random=31"
-            ]
-        };
-
-        let currentCategory = 'gallery';
+        let currentCat = 'gallery';
         let currentIndex = 0;
 
-        function updateViewer() {
-            const images = portfolioData[currentCategory];
-            const imgElement = document.getElementById('display-image');
-            const counterElement = document.getElementById('image-counter');
+        function getActiveSlides() {
+            return Array.from(document.querySelectorAll(`.slide[data-cat="${currentCat}"]`));
+        }
+
+        function render() {
+            const allSlides = document.querySelectorAll('.slide');
+            allSlides.forEach(s => s.classList.remove('active'));
             
-            if (images && images.length > 0) {
-                imgElement.src = images[currentIndex];
-                counterElement.textContent = `${currentIndex + 1} of ${images.length}`;
-                imgElement.style.display = "block";
-            } else {
-                imgElement.style.display = "none";
-                counterElement.textContent = "0 of 0";
+            const activeSlides = getActiveSlides();
+            if (activeSlides.length > 0) {
+                if (currentIndex >= activeSlides.length) currentIndex = 0;
+                if (currentIndex < 0) currentIndex = activeSlides.length - 1;
+                
+                activeSlides[currentIndex].classList.add('active');
+                document.getElementById('imageData').textContent = `${currentIndex + 1} of ${activeSlides.length}`;
             }
         }
 
-        function switchCategory(category) {
-            currentCategory = category;
+        function switchTab(cat) {
+            currentCat = cat;
             currentIndex = 0;
             
-            // Toggle active menu styling
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.classList.remove('active');
-                if(link.textContent.toLowerCase().includes(category === 'stills' ? 'stills' : category)) {
-                    link.classList.add('active');
+            document.querySelectorAll('#mainNavigation a').forEach(link => {
+                link.classList.remove('active-link');
+                if(link.textContent.toLowerCase().includes(cat === 'stills' ? 'stills' : cat)) {
+                    link.classList.add('active-link');
                 }
             });
 
-            updateViewer();
+            render();
             event.preventDefault();
         }
 
-        function nextImage() {
-            const images = portfolioData[currentCategory];
-            if (currentIndex < images.length - 1) {
-                currentIndex++;
-            } else {
-                currentIndex = 0; // Loops back to start
-            }
-            updateViewer();
+        function changeSlide(direction) {
+            currentIndex += direction;
+            render();
         }
 
-        function prevImage() {
-            const images = portfolioData[currentCategory];
-            if (currentIndex > 0) {
-                currentIndex--;
-            } else {
-                currentIndex = images.length - 1; // Loops to end
-            }
-            updateViewer();
-        }
-
-        // Run on load
-        window.onload = () => {
-            updateViewer();
-        };
+        // Initialize view
+        window.onload = () => { render(); };
     </script>
-
 </body>
 </html>

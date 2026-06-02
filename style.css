@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     padding: 20px;
@@ -46,4 +50,19 @@ nav a:hover {
     width: 100%;
     height: auto;
     display: block;
+}
+
+section {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+section h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 2px solid #000; /* Matches your clean black line theme */
+    padding-bottom: 10px;
 }

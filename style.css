@@ -1,6 +1,3 @@
-/* ==========================================================================
-   RAW MINIMALIST LAYOUT FRAMEWORK
-   ========================================================================== */
 * {
     box-sizing: border-box;
 }
@@ -14,11 +11,11 @@ body {
     overflow-x: hidden;
 }
 
-/* TOP DIVISION HEADLINE (Directly inspired by image_3ce380.jpg) */
+/* TOP LINE & TITLE DESIGN */
 #topHeader {
     width: 100%;
-    padding: 25px 40px;
-    border-bottom: 1px solid #000; /* Sharp clean raw border division line */
+    padding: 20px 40px;
+    border-bottom: 1px solid #000;
     background: #fff;
 }
 
@@ -29,19 +26,17 @@ body {
     text-transform: uppercase;
 }
 
-/* ==========================================================================
-   MAIN FLEXBOX LAYOUT (Directly inspired by image_3ce078.jpg)
-   ========================================================================== */
+/* COMPOSITION WORKSPACE */
 #siteCanvas {
     display: flex;
     width: 100vw;
-    min-height: calc(100vh - 75px);
+    min-height: calc(100vh - 65px);
 }
 
-/* Left Sidebar Menu Column */
+/* LEFT SIDEBAR MENU */
 #sideNav {
-    width: 250px;
-    padding: 60px 0 0 40px;
+    width: 240px;
+    padding: 50px 0 0 40px;
     flex-shrink: 0;
 }
 
@@ -56,35 +51,30 @@ body {
     text-decoration: none;
     font-size: 1rem;
     font-weight: bold;
-    transition: color 0.15s ease;
 }
 
 .category-links a:hover {
     text-decoration: underline;
 }
 
-/* Active navigation item highlighting */
 .category-links a.active-item {
     color: #ff0000;
 }
 
-/* ==========================================================================
-   EXPANSIVE WORKSPACE DISPLAY VIEWER
-   ========================================================================== */
+/* EXPANSIVE VIEWER (No more tiny images) */
 #viewerWorkspace {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: 60px 80px 40px 20px; /* Provides organic breathing space on the right */
+    padding: 50px 60px 40px 20px;
 }
 
-/* Fixes the tiny preview glitch in your layout */
 .image-display-frame {
     width: 100%;
-    max-width: 900px; /* Allows your images to stretch out and be seen clearly */
-    height: 68vh;
+    max-width: 900px;
+    height: 65vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -100,7 +90,7 @@ body {
     display: block;
 }
 
-/* Interface Interaction Row sitting neatly beneath photo container */
+/* INTERFACE ROW */
 .viewer-interface {
     display: flex;
     align-items: center;
@@ -108,16 +98,15 @@ body {
     margin-top: 25px;
     width: 100%;
     max-width: 900px;
-    justify-content: flex-start; /* Locks navigation to bottom-left corner of the image */
+    justify-content: flex-start;
 }
 
 .arrow-trigger {
-    font-size: 1rem;
+    font-size: 1.1rem;
     cursor: pointer;
     color: #000;
     user-select: none;
-    padding: 4px 6px;
-    transition: color 0.1s ease;
+    padding: 4px 8px;
 }
 
 .arrow-trigger:hover {
@@ -127,12 +116,9 @@ body {
 .image-index-counter {
     font-size: 0.9rem;
     color: #000;
-    font-weight: normal;
 }
 
-/* ==========================================================================
-   MOBILE SCALING FALLBACK
-   ========================================================================== */
+/* MOBILE FIX */
 @media (max-width: 768px) {
     #siteCanvas {
         flex-direction: column;

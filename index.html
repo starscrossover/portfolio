@@ -3,29 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Starscrossover</title>
+    <title>STARSCROSSOVER</title>
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
-    <header>
-        <h1>STARSCROSSOVER</h1>
-        <nav>
-            <a href="#projects">Projects</a>
-            <a href="#gallery">The Gallery</a>
-            <a href="#stills">Stills & Frames</a>
-        </nav>
-    </header>
+    <div class="portfolio-container">
+        
+        <!-- FIXED LEFT SIDE PANEL (Inspired by image_3cfa68.png & image_3cf6fd.jpg) -->
+        <aside class="side-panel">
+            <div class="logo-area">
+                <h1>STARSCROSSOVER</h1>
+            </div>
+            <nav class="nav-links">
+                <a href="#" class="active" onclick="switchCategory('gallery')">The Gallery</a>
+                <a href="#" onclick="switchCategory('stills')">Stills & Frames</a>
+                <a href="#" onclick="switchCategory('projects')">Projects</a>
+            </nav>
+        </aside>
 
-    <main class="gallery">
-        <!-- Add as many images as you want here, they will automatically arrange into a perfect grid -->
-        <div class="gallery-item"><img src="https://i.imgur.com/qf37Ljo.jpeg" alt="Photo 1"></div>
-        <div class="gallery-item"><img src="https://picsum.photos/800/600?random=2" alt="Photo 2"></div>
-        <div class="gallery-item"><img src="https://picsum.photos/600/600?random=3" alt="Photo 3"></div>
-        <div class="gallery-item"><img src="https://picsum.photos/700/900?random=4" alt="Photo 4"></div>
-        <div class="gallery-item"><img src="https://picsum.photos/800/700?random=5" alt="Photo 5"></div>
-        <div class="gallery-item"><img src="https://picsum.photos/600/800?random=6" alt="Photo 6"></div>
-    </main>
+        <!-- MAIN VIEWER AREA -->
+        <main class="viewer-area">
+            <div class="image-wrapper">
+                <img id="display-image" src="" alt="Portfolio Work">
+            </div>
+
+            <!-- ARROW CONTROLS & COUNTER -->
+            <div class="controls-container">
+                <div class="arrow-buttons">
+                    <button onclick="prevImage()">◀</button>
+                    <button onclick="nextImage()">▶</button>
+                </div>
+                <div id="image-counter" class="counter">0 of 0</div>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- RAW SLIDER SCRIPT -->
+    <script>
+        // Paste your own hosted image URLs here to display your real work!
+        const portfolioData = {
+            gallery: [
+                "https://i.imgur.com/qf37Ljo.jpeg",
+                "https://picsum.photos/800/600?random=11",
+                "https://picsum.photos/700/900?random=12"
+            ],
+            stills: [
+                "https://picsum.photos/600/600?random=21",
+                "https://picsum.photos/800/700?random=22"
+            ],
+            projects: [
+                "https://picsum.photos/800/600?random=31"
+            ]
+        };
+
+        let currentCategory = 'gallery';
+        let currentIndex = 0;
+
+        function updateViewer() {
+            const images = portfolioData[currentCategory];
+            const imgElement = document.getElementById('display-image');
+            const counterElement = document.getElementById('image-counter');
+            
+            if (images && images.length > 0) {
+                imgElement.src = images[currentIndex];
+                counterElement.textContent = `${currentIndex + 1} of ${images.length}`;
+                imgElement.style.display = "block";
+            } else {
+                imgElement.style.display = "none";
+                counterElement.textContent = "0 of 0";
+            }
+        }
+
+        function switchCategory(category) {
+            currentCategory = category;
+            currentIndex = 0;
+            
+            // Toggle active menu styling
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if(link.textContent.toLowerCase().includes(category === 'stills' ? 'stills' : category)) {
+                    link.classList.add('active');
+                }
+            });
+
+            updateViewer();
+            event.preventDefault();
+        }
+
+        function nextImage() {
+            const images = portfolioData[currentCategory];
+            if (currentIndex < images.length - 1) {
+                currentIndex++;
+            } else {
+                currentIndex = 0; // Loops back to start
+            }
+            updateViewer();
+        }
+
+        function prevImage() {
+            const images = portfolioData[currentCategory];
+            if (currentIndex > 0) {
+                currentIndex--;
+            } else {
+                currentIndex = images.length - 1; // Loops to end
+            }
+            updateViewer();
+        }
+
+        // Run on load
+        window.onload = () => {
+            updateViewer();
+        };
+    </script>
 
 </body>
 </html>
